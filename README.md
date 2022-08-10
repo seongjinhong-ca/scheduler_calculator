@@ -1,6 +1,6 @@
 # scheduler_calculator
 
-create the annual work year-end settlement calculator (연말 정산)
+create the day work calculator (연말 정산)
 
 divide the app into 2 pages: login page + main page (+ acccount)
 
