@@ -1,56 +1,42 @@
-import * as React from "react"
-// import React from "react";
-import Task from "../Task/Task";
-// import styles from './DayColumn.css'
+import { ReactNode, useState } from "react";
 import styled from "styled-components";
 
-
-
-interface TaskProps {
-    taskName:string,
-    author:string,
-    start:string,
-    end:string
+type Task = {
+    _id: string;
+    name: string;
+    start: string;
+    end: string;
+    task: string;
 }
 interface DayColumnProps {
-    day:any
 
-}
-function getTaskInfo():TaskProps{
-    let task = {taskName:"t1", author:"seongjin", start:"8:00", end:"9:00"}
-    return task
+    renderItem: (task: Task) => ReactNode;
+    tasks: Task[];
 }
 
-function initTaskInfo():TaskProps{
-    let task = {taskName:"t0", author:"N/A", start:"00:00", end:"00:00"}
-    return task
-}
-function DayColumn(props:DayColumnProps) {
-
-    // item
 
 
+function DayColumn(props: DayColumnProps) {
+
+    const displayAllTasks = (tasks: Task[]) => {
+        return tasks.map((task) => {
+            return (
+                <div>
+                    {props.renderItem(task)}
+                </div>
+            )
+        })
+    }
     return (
         <DayColumnStyle>
             {/* {props.id} */}
             <h1>This is DayColumn</h1>
             <br></br>
             {/* props.day = monday */}
-            <div className={props.day}>
+            <div className="day-1">
                 <div className="timeLine">
-                    <div className="hour8-9">
-                        {/* <Task taskProps={getTaskInfo()}>
-
-                        </Task> */}
-                        <Task taskName="t1" author="seongjin" start="8:00" end="9:00"/>
-                    </div>
+                    {displayAllTasks(props.tasks)}
                     <div className="hour9-10">
-                        <Task
-                        taskName={initTaskInfo().taskName} 
-                        author={initTaskInfo().author} 
-                        start={initTaskInfo().start} 
-                        end={initTaskInfo().end}
-                        />
                     </div>
                     <div className="hour10-11"></div>
                     <div className="hour11-12"></div>
